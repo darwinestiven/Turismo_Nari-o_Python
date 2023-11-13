@@ -1,6 +1,434 @@
 {% extends "base.html" %}
 {% block content %}
-	    <h2>hola restaurantes</h2>
-        <button type="button" class="btn btn-primary">Primary</button>
+
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresta.css') }}"> -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+	    
+        <div class="container">
+                <div class="texto">
+                  <h1><span class="rojo">Restaurantes</span> Explorar Nariño por tipo de cocina</h1>
+                </div>
+                
+                <div id="tarjetasCarrusel" class="carousel slide"  data-bs-touch="true" data-bs-interval="false">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="container">
+                        <div class="row">
+                          <!-- Contenido de tus tarjetas aquí -->
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem; margin-top: 30%;">
+                              <h4 class="card-title">Cosas que hacer</h4>
+                              <p class="card-text">Lugares para ver, formas de recorrer y experiencias destacadas.</p>
+                              <a href="#" >Ver Todo</a>
+                              
+                            </div>
+                          </div>
+            
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <a href="{{url_for('pizzeria')}}" style="text-decoration: none; color: inherit;">
+                                <div class="card card-custom" style="width: 18rem;">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/pizzeria.jpg')}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pizzeria</h5>
+                                        <p class="card-text">Variedad de pizzas</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                          <a href="{{url_for('pizzeria')}}" style="text-decoration: none; color: inherit;">
+                              <div class="card card-custom" style="width: 18rem;">
+                                  <img src="{{ url_for('static', filename='img/restaurantes/cafeteria.jpg')}}" class="card-img-top" alt="...">
+                                  <div class="card-body">
+                                      <h5 class="card-title">Cafeteria</h5>
+                                      <p class="card-text">Prueba el mejor cafe¡</p>
+                                  </div>
+                              </div>
+                          </a>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <a href="{{url_for('pizzeria')}}" style="text-decoration: none; color: inherit;">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/comidas_rapidas.jpg')}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Comidas Rapidas</h5>
+                                <p class="card-text">Todo para tus antojos¡</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+            
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="carousel-item ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <a href="{{url_for('pizzeria')}}" style="text-decoration: none; color: inherit;">
+                                <div class="card card-custom" style="width: 18rem;">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/mariscos.jpg')}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Mariscos</h5>
+                                    <p class="card-text">Las mejores comidas de mar¡</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>>
+            
+                          
+            
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Agrega más elementos de carrusel para mostrar más tarjetas -->
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#tarjetasCarrusel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#tarjetasCarrusel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                
+                
+            
+              </div>
+            
+              <div class="container">
+                <div class="texto">
+                  <h1> Explora la gastronomia de <span class="rojo">Nariño</span></h1>
+                </div>
+            
+                <div class="texto">
+                  <h3><span class="verde">Restaurantes de precio moderado</span> </h3>
+                </div>
+                
+                <div id="bares" class="carousel slide"  data-bs-touch="true" data-bs-interval="false">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="container">
+                        <div class="row">
+                          <!-- Contenido de tus tarjetas aquí -->
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                              <img src="{{ url_for('static', filename='img/restaurantes/restaurante1.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Sushi Lounge Cocina Fusion</h5>
+                                <a href="{{url_for('sushi')}}" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                              
+                            </div>
+                          </div>
+                          
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                              <img src="{{ url_for('static', filename='img/restaurantes/restaurante2.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">La Catedral Cafe</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+                          
+            
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante3.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">La Merced</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante4.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Peru Fusion</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="carousel-item ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante5.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Cola de Gallo</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante6.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">AvLîlâh by Caffeto</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          
+            
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Agrega más elementos de carrusel para mostrar más tarjetas -->
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#bares" data-bs-slide="prev" id="btn_mas">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#bares" data-bs-slide="next" id="btn_atras">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                
+            
+            
+            
+                <div class="texto">
+                  <h3><span class="verde"> Entrega a domicilios disponibles </span> </h3>
+                </div>
+                
+                <div id="spas" class="carousel slide"  data-bs-touch="true" data-bs-interval="false">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="container">
+                        <div class="row">
+                          <!-- Contenido de tus tarjetas aquí -->
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante7.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Hamburguesas El Corral</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante8.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Wapa Waffles & Paninis</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+                          
+            
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                              <img src="{{ url_for('static', filename='img/restaurantes/restaurante9.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Cheers</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante10.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Absalon Music Restaurant</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="carousel-item ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                            <div class="card card-custom" style="width: 18rem;">
+                                <img src="{{ url_for('static', filename='img/restaurantes/restaurante11.jpg')}}" class="card-img-top" alt="..." height="220">
+                              <div class="card-body">
+                                <h5 class="card-title">Juana Cubana</h5>
+                                <a href="#" class="btn btn-primary">Ver mas</a>
+                                <button class="btn btn-outline-danger">
+                                  <i class="fas fa-heart"></i> favoritos
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+            
+                          
+            
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Agrega más elementos de carrusel para mostrar más tarjetas -->
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#spas" data-bs-slide="prev" id="btn_mas">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#spas" data-bs-slide="next" id="btn_atras">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+
+                <div class="texto">
+                        <h3><span class="verde"> Asientos al aire libre disponibles </span> </h3>
+                      </div>
+                      
+                      <div id="aire_libre" class="carousel slide"  data-bs-touch="true" data-bs-interval="false">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <div class="container">
+                              <div class="row">
+                                <!-- Contenido de tus tarjetas aquí -->
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                  <div class="card card-custom" style="width: 18rem;">
+                                      <img src="{{ url_for('static', filename='img/restaurantes/restaurante12.jpg')}}" class="card-img-top" alt="..." height="220">
+                                    <div class="card-body">
+                                      <h5 class="card-title">La Vereda Cocina de Origen</h5>
+                                      <a href="#" class="btn btn-primary">Ver mas</a>
+                                      <button class="btn btn-outline-danger">
+                                        <i class="fas fa-heart"></i> favoritos
+                                    </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                  <div class="card card-custom" style="width: 18rem;">
+                                      <img src="{{ url_for('static', filename='img/restaurantes/restaurante13.jpg')}}" class="card-img-top" alt="..." height="220">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Vinotinto</h5>
+                                      <a href="#" class="btn btn-primary">Ver mas</a>
+                                      <button class="btn btn-outline-danger">
+                                        <i class="fas fa-heart"></i> favoritos
+                                    </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                  
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                  <div class="card card-custom" style="width: 18rem;">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/restaurante14.jpg')}}" class="card-img-top" alt="..." height="220">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Cafe del Parque</h5>
+                                      <a href="#" class="btn btn-primary">Ver mas</a>
+                                      <button class="btn btn-outline-danger">
+                                        <i class="fas fa-heart"></i> favoritos
+                                    </button>
+                                    </div>
+                                  </div>
+                                </div>
+                  
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                  <div class="card card-custom" style="width: 18rem;">
+                                      <img src="{{ url_for('static', filename='img/restaurantes/restaurante15.jpg')}}" class="card-img-top" alt="..." height="220">
+                                    <div class="card-body">
+                                      <h5 class="card-title">La Paila Gourmet</h5>
+                                      <a href="#" class="btn btn-primary">Ver mas</a>
+                                      <button class="btn btn-outline-danger">
+                                        <i class="fas fa-heart"></i> favoritos
+                                    </button>
+                                    </div>
+                                  </div>
+                                </div>
+                  
+                                
+                              </div>
+                            </div>
+                          </div>
+                  
+                          <div class="carousel-item ">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                  <div class="card card-custom" style="width: 18rem;">
+                                      <img src="{{ url_for('static', filename='img/restaurantes/restaurante16.jpg')}}" class="card-img-top" alt="..." height="220">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Tierra Azteca</h5>
+                                      <a href="#" class="btn btn-primary">Ver mas</a>
+                                     <button class="btn btn-outline-danger">
+                                        <i class="fas fa-heart"></i> favoritos
+                                    </button>
+                                    </div>
+                                  </div>
+                                </div>
+                  
+                                
+                  
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Agrega más elementos de carrusel para mostrar más tarjetas -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#aire_libre" data-bs-slide="prev" id="btn_mas">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#aire_libre" data-bs-slide="next" id="btn_atras">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                </div>
+
+                      
 	    
 {% endblock %}

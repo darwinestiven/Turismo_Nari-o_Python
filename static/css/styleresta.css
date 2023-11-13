@@ -1,0 +1,185 @@
+
+.custom-margin {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.nav-text {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tren{
+    margin-top: 1%;
+   
+}
+.ima{
+    height: 600px;
+    width: 500px;
+}
+.custom-box {
+    height: 80px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .texto {
+    margin-top: 20px; /* Margen de 20 píxeles en la parte superior */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Cambia el tipo de letra a Arial o cualquier otra fuente sans-serif */
+    font-weight: bold; /* Aplica negrita al texto */
+  }
+  
+  .rojo {
+    color: red; /* Color rojo para la palabra "Puntos" */
+    
+  }
+  .verde {
+    color: green; /* Color rojo para la palabra "Puntos" */
+    
+  }
+
+  .card-custom {
+    margin-right: 15px; /* Ajusta el valor del margen derecho según sea necesario */
+  }
+  
+  #btn_mas{
+    height: 50px;
+    width: 50px;
+    margin-top: 100px;
+    margin-left: 50px;
+    /*background-color: rgb(223, 236, 236);*/
+  }
+
+  #btn_atras{
+    height: 50px;
+    width: 50px;
+    margin-top: 100px;
+    margin-right: 50px;
+  }
+
+  /* Estilo para las estrellas de calificación */
+/* Estilo para las estrellas de calificación */
+#form {
+  width: 350px; /* Aumenta el ancho de la tarjeta */
+  margin: 0 auto;
+  height: 50px;
+  
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 50px; /* Tamaño de fuente más grande */
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+
+/*mover estreña*/
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 30px;
+  
+}
+
+label:hover,
+label:hover ~ label {
+  color: rgb(38, 215, 29);
+}
+
+input[type="radio"]:checked ~ label {
+  color: rgb(38, 215, 29);
+}
+
+#tarjeta{
+  width: 350px; /* Aumenta el ancho de la tarjeta horizontalmente */
+  
+}
+
+#img {
+  width: 190px; /* Ajusta el ancho deseado en píxeles */
+  height: 240px; /* Ajusta la altura deseada en píxeles */
+}
+
+/* boton ver mas */
+#button_vermas{
+ margin-top: -20px;
+}
+
+/* collage  */
+/* Agrega los estilos específicos para el mosaico */
+.container {
+  text-align: left;
+}
+
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+  margin-top: 20px;
+  height: 320px;
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.medium {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.small {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/*acordeon*/
+
+details {
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+summary {
+    background-color: #4c9daf;
+    color: white;
+    padding: 12px;
+    cursor: pointer;
+}
+
+#contenedor{
+  margin-left: 95px;
+}
+
+
+
+

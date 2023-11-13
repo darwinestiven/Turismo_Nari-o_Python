@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>{% block title %}{% endblock %}</title>
       <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresta.css') }}">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
   </head>
@@ -52,7 +52,33 @@
     </nav>
     
     
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
     {% block content %}{% endblock %}
+    <footer class="bg-dark text-white text-center py-3">
+      <div id="pieDePagina">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p>&copy; 2023 Página de Turismo. Todos los derechos reservados.</p>
+            </div>
+            <div class="col-md-6">
+              <div class="redes-sociales">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Twitter</a>
+                <a href="#" target="_blank">Instagram</a>
+              </div>
+              <div class="enlaces-utiles">
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Contáctanos</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
   </body>
 </html>

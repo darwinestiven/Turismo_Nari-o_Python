@@ -1,0 +1,453 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresta.css') }}"> -->
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<div class="container">
+        <div class="texto">
+                <h1><span class="rojo">Gastronomia</span> Nariñense es puro sabor</h1>
+        </div><br>
+    <!-- Primera tarjeta en la primera fila -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-2">
+                        <!-- Carrusel de imágenes -->
+                        <div id="carousel1" class="carousel slide" data-ride="carousel" >
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/carousel1/pizza2.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Puedes agregar más imágenes aquí -->
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel1/pizza3.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel1/pizza4.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel1/pizza1.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Agrega más imágenes según sea necesario -->
+                            </div>
+                            <!-- Habilita los controles de navegación si solo hay una imagen -->
+                            <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <h3 class="card-title">TRATTORIA ALINA</h3>
+                                    <p class="card-text">“La mejor opción de Pizza Gourmet en Pasto”</p>
+    
+                                    <!-- Estrellas de calificación -->
+                                    <div>
+                                        <i class="fas fa-map-marker-alt"></i> Av de los Estudiantes, Pasto, Colombia
+                                    </div>
+    
+                                    <form>
+                                        <p class="clasificacion">
+                                            <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                            --><label for="radio1">★</label><!--
+                                            --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                                            --><label for="radio2">★</label><!--
+                                            --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                            --><label for="radio3">★</label><!--
+                                            --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                            --><label for="radio4">★</label><!--
+                                            --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                            --><label for="radio5">★</label>
+                                        </p>
+                                    </form>
+                                    
+                                    <div><a href="#" class="btn btn-primary" id="button_vermas">Más información</a></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Second column content goes here -->
+                                <div style="margin-top: 20px;">
+                                    <h5>Precios y más información</h5>
+                                    <p>Precio: $20,000 - $40,000</p>
+                                    <i class="fas fa-phone"></i> +57 2 7313565
+                                    <br>
+                                    <div class="delivery-message">
+                                        <i class="fas fa-motorcycle"></i> ¡Entrega a domicilio disponible!
+                                    </div>
+                                    <button class="btn btn-outline-danger" style="margin-top: 35px;">
+                                        <i class="fas fa-heart"></i> Agregar a favoritos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Segunda tarjeta en la segunda fila -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-2">
+                        <!-- Carrusel de imágenes -->
+                        <div id="carousel2" class="carousel slide" data-ride="carousel" >
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/carousel2/pizza2.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Puedes agregar más imágenes aquí -->
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel2/pizza3.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel2/pizza4.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel2/pizza1.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Agrega más imágenes según sea necesario -->
+                            </div>
+                            <!-- Habilita los controles de navegación si solo hay una imagen -->
+                            <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <h3 class="card-title">LA BANDIDA PIZZERIA</h3>
+                                    <p class="card-text">“Italiana, Napolitana, De Campania, Del sur italiano”</p>
+    
+                                    <!-- Estrellas de calificación -->
+                                    <div>
+                                        <i class="fas fa-map-marker-alt"></i> Carrera 35A # 20-109, Pasto 520002 Colombia
+                                    </div>
+    
+                                    <form>
+                                        <p class="clasificacion">
+                                            <input id="radio6" type="radio" name="estrellas1" value="5"><!--
+                                            --><label for="radio6">★</label><!--
+                                            --><input id="radio7" type="radio" name="estrellas1" value="4"><!--
+                                            --><label for="radio7">★</label><!--
+                                            --><input id="radio8" type="radio" name="estrellas1" value="3"><!--
+                                            --><label for="radio8">★</label><!--
+                                            --><input id="radio9" type="radio" name="estrellas1" value="2"><!--
+                                            --><label for="radio9">★</label><!--
+                                            --><input id="radio10" type="radio" name="estrellas1" value="1"><!--
+                                            --><label for="radio11">★</label>
+                                        </p>
+                                    </form>
+    
+                                    <div><a href="#" class="btn btn-primary" id="button_vermas">Más información</a></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Second column content goes here -->
+                                <div style="margin-top: 20px;">
+                                    <h5>Precios y más información</h5>
+                                    <p>Precio: $ 10.000 - $ 50.000</p>
+                                    <i class="fas fa-phone"></i> +57 301 7319171
+                                    <br>
+                                   
+                                    <button class="btn btn-outline-danger" style="margin-top: 60px;">
+                                        <i class="fas fa-heart"></i> Agregar a favoritos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tercera tarjeta en la segunda fila -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-2">
+                        <!-- Carrusel de imágenes -->
+                        <div id="carousel3" class="carousel slide" data-ride="carousel" >
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/carousel3/pizza1.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Puedes agregar más imágenes aquí -->
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel3/pizza2.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel3/pizza3.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel3/pizza4.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Agrega más imágenes según sea necesario -->
+                            </div>
+                            <!-- Habilita los controles de navegación si solo hay una imagen -->
+                            <a class="carousel-control-prev" href="#carousel3" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel3" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <h3 class="card-title">PIZZA REPUBLIC</h3>
+                                    <p class="card-text">“Brunch, Bebidas, Pizzeria”</p>
+    
+                                    <!-- Estrellas de calificación -->
+                                    <div>
+                                        <i class="fas fa-map-marker-alt"></i> Calle 18#35-19 Maridiaz, Pasto 520002 Colombia
+                                    </div>
+    
+                                    <form>
+                                        <p class="clasificacion">
+                                            <input id="radio12" type="radio" name="estrellas2" value="5"><!--
+                                            --><label for="radio12">★</label><!--
+                                            --><input id="radio13" type="radio" name="estrellas2" value="4"><!--
+                                            --><label for="radio13">★</label><!--
+                                            --><input id="radio14" type="radio" name="estrellas2" value="3"><!--
+                                            --><label for="radio14">★</label><!--
+                                            --><input id="radio15" type="radio" name="estrellas2" value="2"><!--
+                                            --><label for="radio15">★</label><!--
+                                            --><input id="radio16" type="radio" name="estrellas2" value="1"><!--
+                                            --><label for="radio16">★</label>
+                                        </p>
+                                    </form>
+    
+                                    <div><a href="#" class="btn btn-primary" id="button_vermas">Más información</a></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Second column content goes here -->
+                                <div style="margin-top: 20px;">
+                                    <h5>Precios y más información</h5>
+                                    <p>Precio: $ 8.065 - $ 20.161</p>
+                                    <i class="fas fa-phone"></i> +57 304 1046701
+                                    <br>
+                                    <div class="reservation-message">
+                                        <i class="fas fa-book"></i> ¡Haga sus reservaciones!
+                                    </div>
+                                    <button class="btn btn-outline-danger" style="margin-top: 35px;">
+                                        <i class="fas fa-heart"></i> Agregar a favoritos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- cuarta tarjeta en la segunda fila -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-2">
+                        <!-- Carrusel de imágenes -->
+                        <div id="carousel4" class="carousel slide" data-ride="carousel" >
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/carousel4/pizza1.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Puedes agregar más imágenes aquí -->
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel4/pizza2.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel4/pizza3.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Agrega más imágenes según sea necesario -->
+                            </div>
+                            <!-- Habilita los controles de navegación si solo hay una imagen -->
+                            <a class="carousel-control-prev" href="#carousel4" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel4" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <h3 class="card-title">CHEERS</h3>
+                                    <p class="card-text">“Entrega a domicilio, Reservas, Servicio de mesa”</p>
+    
+                                    <!-- Estrellas de calificación -->
+                                    <div>
+                                        <i class="fas fa-map-marker-alt"></i> Carrera 39 # 20-20, Pasto Colombia
+                                    </div>
+    
+                                    <form>
+                                        <p class="clasificacion">
+                                            <input id="radio17" type="radio" name="estrellas3" value="5"><!--
+                                            --><label for="radio17">★</label><!--
+                                            --><input id="radio18" type="radio" name="estrellas3" value="4"><!--
+                                            --><label for="radio18">★</label><!--
+                                            --><input id="radio19" type="radio" name="estrellas3" value="3"><!--
+                                            --><label for="radio19">★</label><!--
+                                            --><input id="radio20" type="radio" name="estrellas3" value="2"><!--
+                                            --><label for="radio20">★</label><!--
+                                            --><input id="radio21" type="radio" name="estrellas3" value="1"><!--
+                                            --><label for="radio1">★</label>
+                                        </p>
+                                    </form>
+    
+                                    <div><a href="#" class="btn btn-primary" id="button_vermas">Más información</a></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Second column content goes here -->
+                                <div style="margin-top: 20px;">
+                                    <h5>Precios y más información</h5>
+                                    <p>Precio: variedad de precios</p>
+                                    <i class="fas fa-phone"></i> +57 2 7313565
+                                    <br>
+                                    <div class="delivery-message">
+                                        <i class="fas fa-motorcycle"></i> ¡Entrega a domicilio disponible!
+                                    </div>
+                                    <div class="reservation-message">
+                                        <i class="fas fa-book"></i> ¡Haga sus reservaciones!
+                                    </div>
+                                    <button class="btn btn-outline-danger" style="margin-top: 35px;">
+                                        <i class="fas fa-heart"></i> Agregar a favoritos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- quinta tarjeta en la segunda fila -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-2">
+                        <!-- Carrusel de imágenes -->
+                        <div id="carousel5" class="carousel slide" data-ride="carousel" >
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='img/restaurantes/carousel5/pizza1.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Puedes agregar más imágenes aquí -->
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel5/pizza2.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel5/pizza3.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='img/restaurantes/carousel5/pizza4.jpg')}}" class="d-block w-100" alt="..." id="img">
+                                </div>
+                                <!-- Agrega más imágenes según sea necesario -->
+                            </div>
+                            <!-- Habilita los controles de navegación si solo hay una imagen -->
+                            <a class="carousel-control-prev" href="#carousel5" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel5" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <h3 class="card-title">TWAPA WAFFLES & PANINIS</h3>
+                                    <p class="card-text">“Italiana, Sudamericana, Colombiana”</p>
+    
+                                    <!-- Estrellas de calificación -->
+                                    <div>
+                                        <i class="fas fa-map-marker-alt"></i> Calle 20 37 33 Av los Estudiantes, Pasto 520002
+                                    </div>
+    
+                                    <form>
+                                        <p class="clasificacion">
+                                            <input id="radio22" type="radio" name="estrellas4" value="5"><!--
+                                            --><label for="radio22">★</label><!--
+                                            --><input id="radio23" type="radio" name="estrellas4" value="4"><!--
+                                            --><label for="radio23">★</label><!--
+                                            --><input id="radio24" type="radio" name="estrellas4" value="3"><!--
+                                            --><label for="radio24">★</label><!--
+                                            --><input id="radio25" type="radio" name="estrellas4" value="2"><!--
+                                            --><label for="radio24">★</label><!--
+                                            --><input id="radio26" type="radio" name="estrellas4" value="1"><!--
+                                            --><label for="radio26">★</label>
+                                        </p>
+                                    </form>
+    
+                                    <div><a href="#" class="btn btn-primary" id="button_vermas">Más informacion</a></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Second column content goes here -->
+                                <div style="margin-top: 20px;">
+                                    <h5>Precios y más información</h5>
+                                    <p>Precio: $ 8.900 - $ 21.900</p>
+                                    <i class="fas fa-phone"></i> +57 3104562387
+                                    <br>
+                                    <div class="delivery-message">
+                                        <i class="fas fa-motorcycle"></i> ¡Entrega a domicilio disponible!
+                                    </div>
+                                    <button class="btn btn-outline-danger" style="margin-top: 35px;">
+                                        <i class="fas fa-heart"></i> Agregar a favoritos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
