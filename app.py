@@ -22,7 +22,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 DB_HOST = "localhost"
 DB_NAME = "seminario"
 DB_USER = "postgres"
-DB_PASS = "123"
+DB_PASS = "12345"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
@@ -85,10 +85,10 @@ def login():
                 return redirect(url_for('home'))
             else:
                 # Account doesnt exist or username/password incorrect
-                flash('Incorrect username/password')
+                flash('Usuario o Contraseña incorrecta')
         else:
             # Account doesnt exist or username/password incorrect
-            flash('Incorrect username/password')
+            flash('Usuario o Contraseña incorrecta')
  
     return render_template('login.html')
   
@@ -112,21 +112,21 @@ def register():
         print(account)
         # If account exists show error and validation checks
         if account:
-            flash('Account already exists!')
+            flash('La cuenta ya existe!')
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            flash('Invalid email address!')
+            flash('Email invalido!')
         elif not re.match(r'[A-Za-z0-9]+', username):
-            flash('Username must contain only characters and numbers!')
+            flash('El nombre de usuario solo debe contener caracteres y números!')
         elif not username or not password or not email:
-            flash('Please fill out the form!')
+            flash('Por favor, complete el formulario!')
         else:
             # Account doesnt exists and the form data is valid, now insert new account into users table
             cursor.execute("INSERT INTO users (fullname, username, password, email) VALUES (%s,%s,%s,%s)", (fullname, username, _hashed_password, email))
             conn.commit()
-            flash('You have successfully registered!')
+            flash('Se ha registrado exitosamente!')
     elif request.method == 'POST':
         # Form is empty... (no POST data)
-        flash('Please fill out the form!')
+        flash('Por favor, complete el formulario!')
     # Show registration form with message (if any)
     return render_template('register.html')
    
