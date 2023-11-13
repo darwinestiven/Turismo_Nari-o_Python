@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+<div class="container">
+    <br>
+    <h1>Hotel Avanty</h1>
+
+    <div class="row precio" >
+        <div class="col-md-6">
+            <!-- Contenido de la primera columna -->
+            <i class="fas fa-map-marker-alt" id="ubi"></i> Carrera 11 No. 15-19, Ipiales Colombia
+        </div>
+        <div class="col-md-6 precio2">
+            <!-- Contenido de la segunda columna -->
+            <h4>
+                <span class="precio ml-auto">$105.000</span>
+            </h4>
+            <button class="btn btn-primary">Reservar ahora</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="carouselExampleCaptions" class="carousel slide container tren">
+    
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ url_for('static', filename='img/imghotel/avanty/ava1.jpg')}}" class="d-block w-100 ima" alt=""  >
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static', filename='img/imghotel/avanty/ava2.jpg')}}" class="d-block w-100 ima" alt="..." >
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static', filename='img/imghotel/avanty/ava3.jpg')}}" class="d-block w-100 ima" alt="..." >
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static', filename='img/imghotel/avanty/ava4.jpg')}}" class="d-block w-100 ima" alt="..." >
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static', filename='img/imghotel/avanty/ava5.jpg')}}" class="d-block w-100 ima" alt="..." >
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Contenido de la primera y segunda columna combinadas -->
+                <h3>Información</h3>
+                <p class="texto">Descubre por qué tantos viajeros ven Hotel Avanty como el hotel pequeño ideal cuando visitan Ipiales. Además de aportar la combinación ideal de calidad, comodidad y ubicación, ofrece un ambiente para familias con una amplia variedad de servicios diseñados para viajeros como tú.</p>
+                <p class="texto">El hotel pequeño ofrece servicio de habitaciones, para que tu estancia sea incluso más agradable. El establecimiento también cuenta con desayuno incluido. Los huéspedes que lleguen en coche tienen acceso a parking gratis.</p>
+                    
+                <p class="texto">Mientras estés en Ipiales, quizás quieras probar algunos de los restaurantes que hay cerca de Hotel Avanty, como La Terraza (0,4 km), DaVinci Ristorante (1,3 km) y ZONA BROASTER (1,6 km).</p>
+                    
+                <p class="texto">Lo mejor de todo es que Hotel Avanty es una estupenda base desde la que conocer atracciones de Ipiales, como Catedral de Ipiales (1,0 km), que se encuentran muy cerca.</p>
+                    
+                <p class="texto">Estamos seguros de que disfrutarás de tu estancia en Hotel Avanty mientras descubres todo lo que Ipiales tiene para ofrecer.</p>
+                    
+                <p class="texto">El Hotel Avanty ofrece confortables habitaciones sencillas,matrimoniales y familiares, estamos hubicados en la carrera 11 No. 15-19 Les esperamos</p>
+                <!-- Agregar el resto de tu contenido aquí -->
+            </div>
+    
+            <!-- Columna 3 y 4 al lado derecho del texto grande -->
+            <div class="col-md-3">
+                <h4>Servicios del Establecimiento</h4>
+                <!-- Contenido de la tercera columna separada -->
+                <i class="fas fa-parking"></i> Estacionamiento gratis <br> <br>
+                <i class="fas fa-wifi"></i> Wifi <br> <br>
+                <i class="fas fa-glass-martini-alt"></i> Bar/Salón <br><br>
+                <!-- <i class="fas fa-wifi"></i> Internet de alta velocidad gratuito (WIFI) <br><br> -->
+                <i class="fas fa-tachometer-alt"></i> Internet de alta velocidad gratuito (WIFI) <br><br>
+                <i class="fas fa-coffee"></i> Desayuno gratis <br><br>
+                <i class="fas fa-utensils"></i> Restaurante <br><br>
+                <i class="fas fa-child"></i> Actividades infantiles
+                
+            </div>
+
+            <div class="col-md-3">
+                <!-- Contenido de la cuarta columna separada -->
+                <h4>Caracteristicas de la Habitación</h4> <br>
+                <i class="fas fa-concierge-bell"></i> Servicio a la Habitación <br><br>
+                <h4>Tipos de Habitación</h4> <br>
+                <i class="fas fa-smoking-ban"></i> Habitaciones para no fumadores
+            </div>
+        </div>
+    </div>
+
+    
+    
+</div>
+
+<div class="container">
+    <h2><i class="fas fa-mountain"></i> Vista Espectacular</h2><br>
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="{{ url_for('static', filename='img/imghotel/avanty/ava6.jpg')}}" alt="Imagen" class="img-fluid" id="imgavav">
+    </div>
+</div>
+
+
+
+    
+
+{% endblock %}

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{% block title %}{% endblock %}</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+
+      <div class="container-fluid">
+        <div class="container">
+          <img src="{{ url_for('static', filename='img/nariño.jpg')}}" alt="" width="300px" >
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse justify-content-between" >
+          <ul class="navbar-nav">
+            <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
+              <a class="nav-link fw-semibold fs-5 nav-text" aria-current="page" href="{{url_for('inicio')}}">Inicio<i class="bi bi-house-door fs-3 me-2"></i></a>
+            </li>
+            <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
+              <a class="nav-link fw-semibold fs-5 nav-text" href="{{url_for('hoteles')}}">Hoteles<i class="bi bi-building fs-3 me-2"></i></a>
+            </li>
+            <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
+              <a class="nav-link fw-semibold fs-5 nav-text " href="{{url_for('restaurantes')}}">Restaurantes <i class="bi bi-star fs-3 me-2"></i></a>
+            </li>
+            <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
+              <a class="nav-link fw-semibold fs-5 nav-text" href="#">Pueblos<i class="bi bi-list-check fs-3 me-2"></i></a>
+            </li>
+    
+            <li class="nav-item dropdown custom-margin border border-success border-3 rounded p-2 custom-box">
+              <a class="nav-link dropdown-toggle fw-semibold fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Usuario
+              </a>
+              <ul class="dropdown-menu">
+                <!-- <li><a class="dropdown-item" >Iniciar sesión</a></li> -->
+                <li><a class="dropdown-item"  href="{{ url_for('profile') }}">Perfil</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesion</a></li>              
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {% block content %}{% endblock %}
+  </body>
+</html>

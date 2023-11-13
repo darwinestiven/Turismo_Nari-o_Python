@@ -1,0 +1,25 @@
+  /* styles.css */
+  h1 {
+    color: #2e86de;
+    font-family: Arial, sans-serif;
+}
+
+div {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+p {
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 8px;
+    font-weight: bold;
+}

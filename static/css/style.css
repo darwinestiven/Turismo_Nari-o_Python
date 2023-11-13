@@ -1,0 +1,112 @@
+
+.custom-margin {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.nav-text {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tren{
+    margin-top: 1%;
+   
+}
+.ima{
+    height: 600px;
+    width: 500px;
+}
+.custom-box {
+    height: 80px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HOTELES */
+.container1{
+    margin-top: 5%;
+    
+}
+
+/* Estilo para las estrellas de calificación */
+/* Estilo para las estrellas de calificación */
+#form {
+    width: 350px; /* Aumenta el ancho de la tarjeta */
+    margin: 0 auto;
+    height: 50px;
+    
+}
+
+#form p {
+    text-align: center;
+}
+
+#form label {
+    font-size: 30px; /* Tamaño de fuente más grande */
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    color: grey;
+}
+
+
+/*mover estreña*/
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    font-size: 30px;
+    
+}
+
+label:hover,
+label:hover ~ label {
+    color: rgb(38, 215, 29);
+}
+
+input[type="radio"]:checked ~ label {
+    color: rgb(38, 215, 29);
+}
+
+#tarjeta{
+    width: 500px; /* Aumenta el ancho de la tarjeta horizontalmente */
+    
+}
+
+#img {
+    width: 190px; /* Ajusta el ancho deseado en píxeles */
+    height: 270px; /* Ajusta la altura deseada en píxeles */
+}
+
+/*estilos de titulos hoteles*/
+
+h1 {
+    font-family:Georgia, 'Times New Roman', Times, serif; /* Reemplaza 'Roboto' con la fuente de Google Fonts deseada */
+}
+
+/* opinion hotel avanty*/
+.precio{
+    text-align:left;
+}
+
+.precio2{
+    text-align: right;
+}
+
+.texto{
+    text-align:justify ;
+}
+
+#imgavav{
+    align-content: center;
+}
+
+
+
+
