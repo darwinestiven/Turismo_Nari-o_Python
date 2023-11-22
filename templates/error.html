@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<title>{{error}}</title>
-<meta charset="utf-8" />
-</head>
- 
-<body>
-    <header>
-       <h1>{{error}}</h1>
-       <img src="{{ url_for('static', filename='img/error_404.jpg')}}"/>
-    </header>       
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Hotel Avanty{% endblock %}
+{% block content %}
+<div class="container error-container">
+    <!-- Reemplazar la URL de la imagen con la de tu elección -->
+    <img src="{{ url_for('static', filename='img/error-404.png')}}" alt="Error 404" class="error-image">
+    <h1 class="mt-4">Error 404</h1>
+    <p>¡Ups! La página que estás buscando no se encuentra.</p>
+</div> 
+{% endblock %}

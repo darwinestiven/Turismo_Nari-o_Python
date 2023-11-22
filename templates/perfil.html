@@ -1,21 +1,21 @@
 {% extends "base.html" %}
   
-{% block title %}Profile{% endblock %}
+{% block title %}Perfil{% endblock %}
   
 {% block content %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylePerfil.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresta.css') }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-<h1>Profile Page</h1>
+<h1>Pagina de perfil</h1>
 <div>
-    <p>Your account details are below:</p>
+    <p>Los detalles de su cuenta estan a continuación</p>
     <table>
         <tr>
-            <td>Name:</td>
+            <td>Nombre:</td>
             <td>{{ account['fullname'] }}</td>
         </tr>
   <tr>
-            <td>Username:</td>
+            <td>Usuario:</td>
             <td>{{ account['username'] }}</td>
         </tr>
         <tr>

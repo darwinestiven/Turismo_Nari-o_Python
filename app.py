@@ -8,6 +8,8 @@ from flask import render_template
 from os import listdir
 from werkzeug.utils import secure_filename
 import os
+from forms import RegistrationForm
+from forms import LoginForm
 
 #login
 import psycopg2 #pip install psycopg2 
@@ -22,7 +24,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 DB_HOST = "localhost"
 DB_NAME = "seminario"
 DB_USER = "postgres"
-DB_PASS = "12345"
+DB_PASS = "123"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
@@ -33,108 +35,80 @@ def favicon():
 
 @app.route('/home')
 def inicio():
-    # Check if user is loggedin
-    if 'loggedin' in session:
+    return render_template("inicio.html")
+
+@app.route('/home/laguna')
+def laguna():
+    return render_template("laguna.html")
+
+@app.route('/home/bocana')
+def bocana():
+    return render_template("bocana.html")
     
-        # User is loggedin show them the home page
-        #return render_template('home.html', username=session['username'])
-        return render_template("inicio.html")
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
-    
-# @app.route('/')
-# def index():
-#     return redirect(url_for('inicio'))
 
 @app.route('/')
 def home():
-    # Check if user is loggedin
-    if 'loggedin' in session:
+    return redirect(url_for('inicio'))
     
-        # User is loggedin show them the home page
-        #return render_template('home.html', username=session['username'])
-        return redirect(url_for('inicio'))
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-   
-    # Check if "username" and "password" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        username = request.form['username']
-        password = request.form['password']
-        print(password)
- 
-        # Check if account exists using MySQL
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
-        # Fetch one record and return result
         account = cursor.fetchone()
- 
+
         if account:
             password_rs = account['password']
-            print(password_rs)
-            # If account exists in users table in out database
+
             if check_password_hash(password_rs, password):
-                # Create session data, we can access this data in other routes
                 session['loggedin'] = True
                 session['id'] = account['id']
                 session['username'] = account['username']
-                # Redirect to home page
+                flash('Inicio de sesión exitoso', 'success')
                 return redirect(url_for('home'))
             else:
-                # Account doesnt exist or username/password incorrect
-                flash('Usuario o Contraseña incorrecta')
+                flash('Usuario o Contraseña incorrecta', 'danger')
         else:
-            # Account doesnt exist or username/password incorrect
-            flash('Usuario o Contraseña incorrecta')
- 
-    return render_template('login.html')
+            flash('Usuario o Contraseña incorrecta', 'danger')
+
+    return render_template('login.html', form=form)
   
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
- 
-    # Check if "username", "password" and "email" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        # Create variables for easy access
-        fullname = request.form['fullname']
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-    
-        _hashed_password = generate_password_hash(password)
- 
-        #Check if account exists using MySQL
+    form = RegistrationForm()
+
+    if form.validate_on_submit():
+        fullname = form.fullname.data
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+        hashed_password = generate_password_hash(password)
+
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         account = cursor.fetchone()
-        print(account)
-        # If account exists show error and validation checks
+
         if account:
             flash('La cuenta ya existe!')
-        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            flash('Email invalido!')
-        elif not re.match(r'[A-Za-z0-9]+', username):
-            flash('El nombre de usuario solo debe contener caracteres y números!')
-        elif not username or not password or not email:
-            flash('Por favor, complete el formulario!')
         else:
-            # Account doesnt exists and the form data is valid, now insert new account into users table
-            cursor.execute("INSERT INTO users (fullname, username, password, email) VALUES (%s,%s,%s,%s)", (fullname, username, _hashed_password, email))
+            cursor.execute("INSERT INTO users (fullname, username, password, email) VALUES (%s,%s,%s,%s)", (fullname, username, hashed_password, email))
             conn.commit()
             flash('Se ha registrado exitosamente!')
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        flash('Por favor, complete el formulario!')
-    # Show registration form with message (if any)
-    return render_template('register.html')
+            return redirect(url_for('login'))
+
+    return render_template('register.html', form=form)
    
    
 @app.route('/logout')
 def logout():
     # Remove session data, this will log the user out
-   session.pop('loggedin', None)
+   session['loggedin'] = False
    session.pop('id', None)
    session.pop('username', None)
    # Redirect to login page
@@ -157,13 +131,13 @@ def profile():
 @app.route('/hoteles')
 def hoteles():
     # Check if user is loggedin
-    if 'loggedin' in session:
+    
     
         # User is loggedin show them the home page
         #return render_template('home.html', username=session['username'])
         return render_template('hoteles.html')
     # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
+    
     
 
 @app.route('/hoteles/avanty')
@@ -204,6 +178,10 @@ def pizzeria():
 @app.route('/restaurantes/sushi')
 def sushi():
     return render_template('sushi.html')
+
+@app.route('/pueblos/sandona')
+def sandona():
+    return render_template('sandona.html')
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

@@ -7,9 +7,11 @@
       <title>{% block title %}{% endblock %}</title>
       <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresta.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
   </head>
+  
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
 
@@ -32,8 +34,19 @@
             <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
               <a class="nav-link fw-semibold fs-5 nav-text " href="{{url_for('restaurantes')}}">Restaurantes <i class="bi bi-star fs-3 me-2"></i></a>
             </li>
-            <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
-              <a class="nav-link fw-semibold fs-5 nav-text" href="#">Pueblos<i class="bi bi-list-check fs-3 me-2"></i></a>
+            <li class="nav-item dropdown custom-margin border border-success border-3 rounded p-2 custom-box">
+              <a class="nav-link dropdown-toggle fw-semibold fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pueblos
+              </a>
+              <ul class="dropdown-menu">
+                <!-- <li><a class="dropdown-item" >Iniciar sesión</a></li> -->
+                <li><a class="dropdown-item" href="{{url_for('sandona')}}">Sandona</a></li>
+                <li><a class="dropdown-item" href="">Union </a></li>
+                <li><a class="dropdown-item" href="">Tambo </a></li>     
+                <li><a class="dropdown-item" href="">Samaniego </a></li>     
+                <li><a class="dropdown-item" href="">Ancuya</a></li>     
+                <li><a class="dropdown-item" href="">San Pablo</a></li>                   
+              </ul>
             </li>
     
             <li class="nav-item dropdown custom-margin border border-success border-3 rounded p-2 custom-box">
@@ -42,8 +55,15 @@
               </a>
               <ul class="dropdown-menu">
                 <!-- <li><a class="dropdown-item" >Iniciar sesión</a></li> -->
-                <li><a class="dropdown-item"  href="{{ url_for('profile') }}">Perfil</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesion</a></li>              
+                {% if session.loggedin %}
+                  <!-- El usuario está iniciado sesión -->
+                  <li><a class="dropdown-item" href="{{ url_for('profile') }}">Perfil</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                {% else %}
+                <!-- El usuario no está iniciado sesión -->
+                <li><a class="dropdown-item" href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('register') }}">Regristrarse</a></li>
+                {% endif %}              
               </ul>
             </li>
           </ul>
@@ -54,6 +74,7 @@
     
     
     {% block content %}{% endblock %}
+
     <footer class="bg-dark text-white text-center py-3">
       <div id="pieDePagina">
         <div class="container">

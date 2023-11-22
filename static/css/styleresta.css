@@ -1,29 +1,5 @@
 
-.custom-margin {
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
-.nav-text {
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.tren{
-    margin-top: 1%;
-   
-}
-.ima{
-    height: 600px;
-    width: 500px;
-}
-.custom-box {
-    height: 80px;
-    width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 
   .texto {
     margin-top: 20px; /* Margen de 20 píxeles en la parte superior */
