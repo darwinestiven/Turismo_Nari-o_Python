@@ -17,7 +17,7 @@
         <div class="login-header">Login</div>
         <div class="login-body">
             <p>Por favor, Ingrese su usuario y contraseña</p>
-            <form class="form-group" action="{{ url_for('login') }}" method="post">
+            <form class="form-group" action="{{ url_for('usuario.login') }}" method="post">
                 {{ form.hidden_tag() }}
                 <label>{{ form.username.label }}</label>
                 {{ form.username(class="form-control", placeholder="Usuario", id="username", required=true) }}
@@ -51,7 +51,7 @@
               {% endif %}
           {% endwith %}
 
-            <p>Sin cuenta? <a href="{{ url_for('register') }}">Registrar</a></p>
+            <p>Sin cuenta? <a href="{{ url_for('usuario.register') }}">Registrar</a></p>
         </div>
     </div>
 </body>

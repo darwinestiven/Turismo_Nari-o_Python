@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse justify-content-between" >
           <ul class="navbar-nav">
             <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
-              <a class="nav-link fw-semibold fs-5 nav-text" aria-current="page" href="{{url_for('inicio')}}">Inicio<i class="bi bi-house-door fs-3 me-2"></i></a>
+              <a class="nav-link fw-semibold fs-5 nav-text" aria-current="page" href="{{url_for('home.inicio')}}">Inicio<i class="bi bi-house-door fs-3 me-2"></i></a>
             </li>
             <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
-              <a class="nav-link fw-semibold fs-5 nav-text" href="{{url_for('hoteles')}}">Hoteles<i class="bi bi-building fs-3 me-2"></i></a>
+              <a class="nav-link fw-semibold fs-5 nav-text" href="{{url_for('hotel.hoteles')}}">Hoteles<i class="bi bi-building fs-3 me-2"></i></a>
             </li>
             <li class="nav-item custom-margin border border-3 border-success rounded p-2 custom-box">
-              <a class="nav-link fw-semibold fs-5 nav-text " href="{{url_for('restaurantes')}}">Restaurantes <i class="bi bi-star fs-3 me-2"></i></a>
+              <a class="nav-link fw-semibold fs-5 nav-text " href="{{url_for('restaurante.restaurantes')}}">Restaurantes <i class="bi bi-star fs-3 me-2"></i></a>
             </li>
             <li class="nav-item dropdown custom-margin border border-success border-3 rounded p-2 custom-box">
               <a class="nav-link dropdown-toggle fw-semibold fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +40,7 @@
               </a>
               <ul class="dropdown-menu">
                 <!-- <li><a class="dropdown-item" >Iniciar sesión</a></li> -->
-                <li><a class="dropdown-item" href="{{url_for('sandona')}}">Sandona</a></li>
+                <li><a class="dropdown-item" href="{{url_for('pueblos.sandona')}}">Sandona</a></li>
                 <li><a class="dropdown-item" href="">Union </a></li>
                 <li><a class="dropdown-item" href="">Tambo </a></li>     
                 <li><a class="dropdown-item" href="">Samaniego </a></li>     
@@ -57,12 +57,12 @@
                 <!-- <li><a class="dropdown-item" >Iniciar sesión</a></li> -->
                 {% if session.loggedin %}
                   <!-- El usuario está iniciado sesión -->
-                  <li><a class="dropdown-item" href="{{ url_for('profile') }}">Perfil</a></li>
-                  <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('usuario.profile') }}">Perfil</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('usuario.logout') }}">Cerrar Sesión</a></li>
                 {% else %}
                 <!-- El usuario no está iniciado sesión -->
-                <li><a class="dropdown-item" href="{{ url_for('login') }}">Iniciar Sesión</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('register') }}">Regristrarse</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('usuario.login') }}">Iniciar Sesión</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('usuario.register') }}">Regristrarse</a></li>
                 {% endif %}              
               </ul>
             </li>
