@@ -5,6 +5,7 @@ from .hotel import hotel
 from .usuario import usuario
 from .pueblos import pueblos
 from .restaurante import restaurante
+from .admin import admin
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -24,5 +25,6 @@ app.register_blueprint(hotel)
 app.register_blueprint(usuario)
 app.register_blueprint(pueblos)
 app.register_blueprint(restaurante)
+app.register_blueprint(admin)
 
 

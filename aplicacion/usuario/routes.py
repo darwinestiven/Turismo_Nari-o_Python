@@ -5,14 +5,10 @@ from flask import render_template
 from .forms import RegistrationForm
 from .forms import LoginForm
 from . import usuario
-
-
 import psycopg2 #pip install psycopg2 
 import psycopg2.extras
 import re 
 from werkzeug.security import generate_password_hash, check_password_hash
-
-
 #login
 DB_HOST = "localhost"
 DB_NAME = "seminario"
@@ -39,6 +35,7 @@ def login():
                 session['loggedin'] = True
                 session['id'] = account['id']
                 session['username'] = account['username']
+                session['role'] = 'user'
                 flash('Inicio de sesión exitoso', 'success')
                 return redirect(url_for('home.inicio'))
             else:

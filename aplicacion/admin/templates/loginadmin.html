@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    {% extends "base.html" %}
+    {% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleregister.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-header">Login</div>
+        <div class="login-body">
+            <p>Por favor, Ingrese su usuario y contraseña</p>
+            <form class="form-group" action="{{ url_for('admin.loginadmin') }}" method="post">
+                {{ form.hidden_tag() }}
+                <label>{{ form.adminname.label }}</label>
+                {{ form.adminname(class="form-control", placeholder="Usuario", id="adminname", required=true) }}
+                {% for error in form.adminname.errors %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endfor %}
+                <label>{{ form.password.label }}</label>
+                {{ form.password(class="form-control", placeholder="Contraseña", id="password", required=true) }}
+                {% for error in form.password.errors %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endfor %}
+                {{ form.remember(class="form-check-input") }}<b>Recordar</b> 
+                <input type="submit" value="Ingresar" class="form-control btn btn-success" name="">
+            </form>
+            {% with messages = get_flashed_messages()  %}
+              {% if messages %}
+                  {% for message in messages %}
+                      <div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+                  <script>
+                      // Cierra automáticamente el mensaje después de 5 segundos (puedes ajustar este valor)
+                      setTimeout(function() {
+                          var flashMessage = document.getElementById('flash-message');
+                          if (flashMessage) {
+                              flashMessage.style.display = 'none';
+                          }
+                      }, 3000);
+                  </script>
+              {% endif %}
+          {% endwith %}
+
+            <p>Sin cuenta? <a href="{{ url_for('usuario.register') }}">Registrar</a></p>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>
