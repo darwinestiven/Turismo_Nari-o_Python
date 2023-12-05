@@ -3,203 +3,62 @@
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <div class="container">
+        <h1>Lista de Hoteles</h1>
 
-<div class="container">
-    <!-- Primera tarjeta en la primera fila -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-2">
-                        <img src="{{ url_for('static', filename='img/imghotel/avanty.jpg')}}" class="card-img" alt="..." id="img">
+        {% for hotel in hoteles %}
+            <div class="card border-success" style="border-width: 3px;">
+                <div class="row no-gutters text-center">
+                    <div class="col-md-4">
+                        <!-- Imagen a la izquierda -->
+                        <img src="{{url_for('static',filename='img/')}}{{hotel[6]}}" class="card-img img-thumbnail" alt="Imagen del Hotel" style="width: 360px; height: 300px;">
                     </div>
-                    <div class="col-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Hotel Avanty</h5>
-                            <p class="card-text">Descubre por qué tantos viajeros ven Hotel Avanty como el hotel pequeño ideal cuando visitan Ipiales.</p>
-                            <a href="{{url_for('hotel.hotelavanty')}}" class="btn btn-primary">Más información</a>
-                            <!-- Estrellas de calificación -->
-                            <form>
-                                <p class="clasificacion">
-                                        <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                        --><label for="radio1">★</label><!--
-                                        --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                                        --><label for="radio2">★</label><!--
-                                        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                        --><label for="radio3">★</label><!--
-                                        --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                        --><label for="radio4">★</label><!--
-                                        --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                                        --><label for="radio5">★</label>
-                                    </p>
-                            </form>
-                            <button class="btn btn-outline-danger">
-                                <i class="fas fa-heart"></i> Agregar a favoritos
-                            </button>
+                    <div class="col-md-8">
+                        <div class="card-body" style="background-color: rgb(177, 220, 248);">
+                            <h2 class="card-title">{{ hotel[1] }}</h2>
+                            <p class="card-text">{{ hotel[2] }}</p>
+                            <p class="card-text"><strong>Precio por habitación:</strong> $ {{ hotel[3] }}</p>
+                            <p class="card-text"><strong>Dirección:</strong> {{ hotel[4] }}</p>
+                            <p class="card-text"><strong>Disponibilidad en habitaciones:</strong> {{ hotel[5] }}</p>
+
+                        </div>
+                        <div class="card-footer text-right" style="background-color: rgb(136, 171, 247);">
+                            {% if session.role == 'admin' %}
+                                <a href="{{ url_for('hotel.editarHotel', id=hotel[0]) }}" class="btn btn-primary" style="width: 100px;">Editar</a>
+                                <a href="{{ url_for('hotel.eliminarHotel', id=hotel[0]) }}" class="btn btn-danger" style="width: 100px;">Eliminar</a>
+                            {% endif %}
+
+
+                            {% if session.role == 'user' %}
+                                {% if session.loggedin %}
+                                    <!-- <button class="btn btn-outline-danger">
+                                        <i class="fas fa-heart"></i> Favoritos
+                                    </button> -->
+                                    <a href="{{ url_for('carrito.registerCarrito', id=hotel[0])}}" class="btn btn-success">Añadir al carrito</a>
+                                {% else %}
+                                    <a href="{{ url_for('usuario.login')}}" class="btn btn-success">Añadir al carrito</a>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+        {% endfor %}
+
+        <!-- Pagination Links -->
+        <div class="d-flex justify-content-center mt-4">
+            <nav aria-label="Page navigation example text-center">
+                <ul class="pagination">
+                    {{ pagination.links }}
+                </ul>
+            </nav>
         </div>
+        
+        
     </div>
 
-    <!-- Segunda tarjeta en la segunda fila -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-2">
-                        <img src="{{ url_for('static', filename='img/imghotel/sanjose.jpg')}}" class="card-img" alt="" id="img">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Hotel San José</h5>
-                            <p class="card-text">Hotel San José Ipiales ofrece alojamiento en Ipiales.
-                                El aeropuerto (Aeropuerto de San Luis) está a 7 km.</p>
-                            <a href="{{url_for('hotel.hotelessanjose')}}" class="btn btn-primary">Más información</a>
-                            <!-- Estrellas de calificación -->
-                            <form>
-                                <p class="clasificacion">
-                                    <input id="radio6" type="radio" name="estrellas2" value="5"><!--
-                                    --><label for="radio6">★</label><!--
-                                    --><input id="radio7" type="radio" name="estrellas2" value="4"><!--
-                                    --><label for="radio7">★</label><!--
-                                    --><input id="radio8" type="radio" name="estrellas2" value="3"><!--
-                                    --><label for="radio8">★</label><!--
-                                    --><input id="radio9" type="radio" name="estrellas2" value="2"><!--
-                                    --><label for="radio9">★</label><!--
-                                    --><input id="radio10" type="radio" name="estrellas2" value="1"><!--
-                                    --><label for="radio10">★</label>
-                                </p>
-                            </form>
-                            <button class="btn btn-outline-danger">
-                                <i class="fas fa-heart"></i> Agregar a favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- tercera tarjeta en la segunda fila -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-2">
-                        <img src="{{ url_for('static', filename='img/imghotel/villasol.jpg')}}" class="card-img" alt="" id="img">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Hotel & Resort Villa del Sol</h5>
-                            <p class="card-text">Ubicado a 5 minutos del aeropuerto y del centro de Tumaco. Cuenta con 115 habitaciones
-                                 con capacidad para 350 personas, suites con vista al mar y al área de las piscinas, restaurantes y bares. Además de salones para congresos, capacitaciones, convenciones, fiestas y eventos corporativos.</p>
-                            <a href="{{url_for('hotel.hotelesvillasol')}}" class="btn btn-primary">Más información</a>
-                            <!-- Estrellas de calificación -->
-                            <form>
-                                <p class="clasificacion">
-                                    <input id="radio11" type="radio" name="estrellas3" value="5"><!--
-                                    --><label for="radio11">★</label><!--
-                                    --><input id="radio12" type="radio" name="estrellas3" value="4"><!--
-                                    --><label for="radio12">★</label><!--
-                                    --><input id="radio13" type="radio" name="estrellas3" value="3"><!--
-                                    --><label for="radio13">★</label><!--
-                                    --><input id="radio14" type="radio" name="estrellas3" value="2"><!--
-                                    --><label for="radio14">★</label><!--
-                                    --><input id="radio15" type="radio" name="estrellas3" value="1"><!--
-                                    --><label for="radio15">★</label>
-                                </p>
-                            </form>
-                            <button class="btn btn-outline-danger">
-                                <i class="fas fa-heart"></i> Agregar a favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <!-- cuarta tarjeta en la segunda fila -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-2">
-                        <img src="{{ url_for('static', filename='img/imghotel/luxury.jpg')}}" class="card-img" alt="" id="img">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Urbano Luxury Hostel</h5>
-                            <p class="card-text">Urbano Luxury es un hermoso y confortable hotel ubicado en una de las mejores zonas 
-                                de las ciudad, con diversos bares y restaurantes a pocos pasos.</p>
-                            <a href="{{url_for('hotel.hotelesluxury')}}" class="btn btn-primary">Más información</a>
-                            <!-- Estrellas de calificación -->
-                            <form>
-                                <p class="clasificacion">
-                                    <input id="radio16" type="radio" name="estrellas4" value="5"><!--
-                                    --><label for="radio16">★</label><!--
-                                    --><input id="radio17" type="radio" name="estrellas4" value="4"><!--
-                                    --><label for="radio17">★</label><!--
-                                    --><input id="radio18" type="radio" name="estrellas4" value="3"><!--
-                                    --><label for="radio18">★</label><!--
-                                    --><input id="radio19" type="radio" name="estrellas4" value="2"><!--
-                                    --><label for="radio19">★</label><!--
-                                    --><input id="radio20" type="radio" name="estrellas4" value="1"><!--
-                                    --><label for="radio20">★</label>
-                                </p>
-                            </form>
-                            <button class="btn btn-outline-danger">
-                                <i class="fas fa-heart"></i> Agregar a favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- quinta tarjeta en la segunda fila -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-2">
-                        <img src="{{ url_for('static', filename='img/imghotel/mora.jpg')}}" class="card-img" alt="" id="img">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Hotel Morasurco</h5>
-                            <p class="card-text">Descubre por qué tantos viajeros ven Hotel Morasurco como el hotel ideal cuando 
-                                visitan Pasto. Además de aportar la combinación ideal de calidad, comodidad y ubicación, ofrece 
-                                una amplia variedad de servicios diseñados para viajeros como tú.</p>
-                            <a href="{{url_for('hotel.hotelesmora')}}" class="btn btn-primary">Más información</a>
-                            <!-- Estrellas de calificación -->
-                            <form>
-                                <p class="clasificacion">
-                                    <input id="radio21" type="radio" name="estrellas4" value="5"><!--
-                                    --><label for="radio21">★</label><!--
-                                    --><input id="radio22" type="radio" name="estrellas4" value="4"><!--
-                                    --><label for="radio22">★</label><!--
-                                    --><input id="radio23" type="radio" name="estrellas4" value="3"><!--
-                                    --><label for="radio23">★</label><!--
-                                    --><input id="radio24" type="radio" name="estrellas4" value="2"><!--
-                                    --><label for="radio24">★</label><!--
-                                    --><input id="radio25" type="radio" name="estrellas4" value="1"><!--
-                                    --><label for="radio25">★</label>
-                                </p>
-                            </form>
-                            <button class="btn btn-outline-danger">
-                                <i class="fas fa-heart"></i> Agregar a favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock %}

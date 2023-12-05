@@ -3,25 +3,32 @@
 {% block title %}Perfil{% endblock %}
   
 {% block content %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylePerfil.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/stylePerfil.css') }}"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresta.css') }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+
+  
 <h1>Pagina de perfil</h1>
-<div>
-    <p>Los detalles de su cuenta estan a continuación</p>
-    <table>
-        <tr>
-            <td>Nombre:</td>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <p class="h4 font-weight-bold text-center mb-4">Detalles de su cuenta</p>
+        
+        <table class="table table-bordered">
+          <tr>
+            <th scope="col">Nombre</th>
             <td>{{ account['fullname'] }}</td>
-        </tr>
-  <tr>
-            <td>Usuario:</td>
+          </tr>
+          <tr>
+            <th scope="col">Usuario</th>
             <td>{{ account['username'] }}</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
+          </tr>
+          <tr>
+            <th scope="col">Email</th>
             <td>{{ account['email'] }}</td>
-        </tr>
-    </table>
-</div>
+          </tr>
+        </table>
+      </div> 
+</body>
 {% endblock %}

@@ -13,7 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 DB_HOST = "localhost"
 DB_NAME = "seminario"
 DB_USER = "postgres"
-DB_PASS = "123"
+DB_PASS = "12345"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 @usuario.route('/login/', methods=['GET', 'POST'])
@@ -47,36 +47,48 @@ def login():
   
 @usuario.route('/register', methods=['GET', 'POST'])
 def register():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    form = RegistrationForm()
+    try:
+        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        form = RegistrationForm()
 
-    if form.validate_on_submit():
-        fullname = form.fullname.data
-        username = form.username.data
-        email = form.email.data
-        password = form.password.data
-        hashed_password = generate_password_hash(password)
+        if form.validate_on_submit():
+            fullname = form.fullname.data
+            username = form.username.data
+            email = form.email.data
+            password = form.password.data
+            hashed_password = generate_password_hash(password)
 
-        cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
-        account = cursor.fetchone()
+            cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
+            account = cursor.fetchone()
 
-        if account:
-            flash('La cuenta ya existe!')
-        else:
-            cursor.execute("INSERT INTO users (fullname, username, password, email) VALUES (%s,%s,%s,%s)", (fullname, username, hashed_password, email))
-            conn.commit()
-            flash('Se ha registrado exitosamente!')
-            return redirect(url_for('usuario.login'))
+            if account:
+                flash('La cuenta ya existe!')
+            else:
+                cursor.execute("INSERT INTO users (fullname, username, password, email) VALUES (%s,%s,%s,%s)", (fullname, username, hashed_password, email))
+                conn.commit()
+                flash('Se ha registrado exitosamente!')
+                return redirect(url_for('usuario.login'))
+
+        return render_template('register.html', form=form)
+
+    except psycopg2.Error as e:
+        conn.rollback()  # Deshacer cualquier cambio en la base de datos en caso de error
+        flash(f'Error de base de datos: {e}')
+    except Exception as e:
+        flash(f'Error desconocido: {e}')
 
     return render_template('register.html', form=form)
    
    
 @usuario.route('/logout')
 def logout():
+   cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     # Remove session data, this will log the user out
    session['loggedin'] = False
    session.pop('id', None)
    session.pop('username', None)
+   cursor.execute("DELETE FROM carrito")
+   conn.commit()
    # Redirect to login page
    return redirect(url_for('usuario.login'))
   

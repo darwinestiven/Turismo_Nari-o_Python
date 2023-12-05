@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Reservas{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center">Reservas</h1>
+    <table class="table table-bordered mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id reserva</th>
+                <th>Nombre del Hotel</th>
+                <th>Cantidad de Habitaciones</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Salida</th>
+                <th>Precio Hotel</th>
+                <th>Días Totales</th>
+                <th>Precio Total</th>
+                <th>Acciones</th>  <!-- Agregamos una nueva columna para las acciones -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva['id'] }}</td>
+                    <td>{{ reserva['nombreh'] }}</td>
+                    <td>{{ reserva['cantidad_hab'] }}</td>
+                    <td>{{ reserva['fecha_inicio'] }}</td>
+                    <td>{{ reserva['fecha_salida'] }}</td>
+                    <td>${{ reserva['precioh'] }}</td>
+                    <td>{{ reserva['dias_totales'] }}</td>
+                    <td>${{ reserva['precio_total'] }}</td>
+                    <td>
+                        <a href="{{ url_for('carrito.eliminar_reserva', id=reserva[0])}}" class="btn btn-danger">Eliminar</a>
+                        
+                    </td>
+                </tr>
+                
+            {% endfor %}
+            <a href="{{ url_for('carrito.hacer_reserva')}}" class="btn btn-success">Reservar</a>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

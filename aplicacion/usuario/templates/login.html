@@ -13,8 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+    <br><br>
     <div class="login-box">
-        <div class="login-header">Login</div>
+        <div class="login-header">Login Usuario</div>
         <div class="login-body">
             <p>Por favor, Ingrese su usuario y contraseña</p>
             <form class="form-group" action="{{ url_for('usuario.login') }}" method="post">
@@ -24,12 +25,17 @@
                 {% for error in form.username.errors %}
                     <p class="text-danger">{{ error }}</p>
                 {% endfor %}
+                <br>
                 <label>{{ form.password.label }}</label>
                 {{ form.password(class="form-control", placeholder="Contraseña", id="password", required=true) }}
                 {% for error in form.password.errors %}
                     <p class="text-danger">{{ error }}</p>
                 {% endfor %}
-                {{ form.remember(class="form-check-input") }}<b>Recordar</b>
+                <br>
+                <div class="form-group form-check" style="margin-left: 5px;">
+                    {{ form.remember(class="form-check-input") }}
+                    <label class="form-check-label" for="remember">Recordar</label>
+                </div>
                 <input type="submit" value="Ingresar" class="form-control btn btn-success" name="">
             </form>
             {% with messages = get_flashed_messages()  %}

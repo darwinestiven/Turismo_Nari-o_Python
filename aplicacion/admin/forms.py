@@ -9,3 +9,5 @@ class LoginFormAdmin(FlaskForm):
                              validators=[DataRequired(message='Campo requerido')])
     remember = BooleanField('Recordar')
     submit = SubmitField('Ingresar')
+
+

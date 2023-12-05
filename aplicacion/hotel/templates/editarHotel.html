@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% extends "base.html" %}
+    {% block title %}Registro Hotel{% endblock %}
+    {% block content %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleregister.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- Google Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    </head>
+<body>
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <h5>Editar Hotel</h5>
+                <form method="post" autocomplete="off" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.id.label }} {{ form.id(class="form-control",readonly="readonly") }}
+                        {% for error in form.id.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.nombreH.label }} {{ form.nombreH(class="form-control") }}
+                        {% for error in form.nombreH.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.descripcionH.label }} {{ form.descripcionH(class="form-control") }}
+                        {% for error in form.descripcionH.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.precioH.label }} {{ form.precioH(class="form-control") }}
+                        {% for error in form.precioH.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.direccionH.label }} {{ form.direccionH(class="form-control") }}
+                        {% for error in form.direccionH.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.disponibilidadH.label }} {{ form.disponibilidadH(class="form-control") }}
+                        {% for error in form.disponibilidadH.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.imagen.label }} {{ form.imagen(class="form-control") }}
+                        {% for error in form.imagen.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.submit(class="form-control btn btn-primary") }}
+                        <p style="padding:5px;">
+                        
+                    </div>
+
+                    {% with messages = get_flashed_messages()  %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            <script>
+                                // Cierra automáticamente el mensaje después de 5 segundos (puedes ajustar este valor)
+                                setTimeout(function() {
+                                    var flashMessage = document.getElementById('flash-message');
+                                    if (flashMessage) {
+                                        flashMessage.style.display = 'none';
+                                    }
+                                }, 3000);
+                            </script>
+                        {% endif %}
+                    {% endwith %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+{% endblock %}
+</html>

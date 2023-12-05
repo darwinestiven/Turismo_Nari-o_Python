@@ -1,0 +1,20 @@
+<!-- eliminarHotel.html -->
+{% extends "base.html" %}
+{% block title %}Confirmar Eliminación{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>¿Estás seguro que deseas eliminar el hotel?</h2>
+        <div class="card-body">
+            <h5 class="card-title">{{ hotel[1] }}</h5>
+            <p class="card-text">{{ hotel[2] }}</p>
+            <p class="card-text">Precio $: {{ hotel[3] }}</p>
+            <p class="card-text">Dirección: {{ hotel[4] }}</p>
+            <p class="card-text">Disponibilidad en habitaciones: {{ hotel[5] }}</p>
+            <img src="{{url_for('static',filename='img/')}}{{hotel[6]}}"/>
+        </div>
+        <form method="post">
+            <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+            <a href="{{ url_for('hotel.hoteles') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

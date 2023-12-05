@@ -18,8 +18,8 @@
     width: 500px;
 }
 .custom-box {
-    height: 80px;
-    width: 200px;
+    height: 70px;
+    width: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,6 +120,23 @@ h1 {
     height: auto;
     border-radius: 10px; /* Añadido un borde redondeado a la imagen */
 }
+
+/* styles.css */
+#pieDePagina {
+    width: 100%;
+  }
+  
+  /* Estilos adicionales según sea necesario */
+  .bg-dark {
+    /* Ajusta el color de fondo según tus preferencias */
+    background-color: #343a40 !important;
+  }
+  
+  .text-white {
+    /* Ajusta el color del texto según tus preferencias */
+    color: #ffffff !important;
+  }
+  
 
 
 

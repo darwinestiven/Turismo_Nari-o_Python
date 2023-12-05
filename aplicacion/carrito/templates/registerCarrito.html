@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% extends "base.html" %}
+    {% block title %}Añadir a Carrito{% endblock %}
+    {% block content %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleregister.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- Google Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <!-- Agrega estos enlaces en tu encabezado -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+<body>    
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <h5>Añadir a Carrito</h5>
+                <form method="post" autocomplete="off" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.fecha_inicio.label }} {{ form.fecha_inicio(class="form-control") }}
+                        {% for error in form.fecha_inicio.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.fecha_salida.label }} {{ form.fecha_salida(class="form-control") }}
+                        {% for error in form.fecha_salida.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>                    
+                    <div class="form-group">
+                        {{ form.cantidad_hab.label }} {{ form.cantidad_hab(class="form-control") }}
+                        {% for error in form.cantidad_hab.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            {{ form.submit(class="form-control btn btn-primary") }}
+                            <p style="padding:5px;">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ url_for('hotel.hoteles')}}" class="form-control btn btn-danger">Cancelar</a>
+                        </div>   
+                    </div>
+                    
+
+                    {% with messages = get_flashed_messages()  %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            <script>
+                                // Cierra automáticamente el mensaje después de 5 segundos (puedes ajustar este valor)
+                                setTimeout(function() {
+                                    var flashMessage = document.getElementById('flash-message');
+                                    if (flashMessage) {
+                                        flashMessage.style.display = 'none';
+                                    }
+                                }, 3000);
+                            </script>
+                        {% endif %}
+                    {% endwith %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+{% endblock %}
+</html>

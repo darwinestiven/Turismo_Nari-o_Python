@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 DB_HOST = "localhost"
 DB_NAME = "seminario"
 DB_USER = "postgres"
-DB_PASS = "123"
+DB_PASS = "12345"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
@@ -65,3 +65,30 @@ def profileadmin():
         return render_template('perfiladmin.html', account=account)
     # User is not loggedin redirect to login page
     return redirect(url_for('admin.loginadmin'))
+
+
+
+#VISTAS DE RESERVA
+@admin.route('/infoReserva', methods=['GET'])
+def infoReservas():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    # Obtén los datos necesarios de la base de datos
+    cursor.execute('SELECT id_res, nom_hotel, cant_hab, fecha_ini, fecha_sal, precio_hot, dias_tot, precio_tot FROM reservas')
+    reservas_data = cursor.fetchall()
+
+    return render_template('infoReservas.html', reservas=reservas_data)
+
+
+
+#ELIMINAR RESERVA
+
+@admin.route('/eliminar_readmin/<int:id>/', methods=['GET'])
+def eliminar_readmin(id):
+    
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM reservas WHERE id_res = %s", (id,))
+    conn.commit()
+
+    # Después de eliminar, redirige a la página de reservas actualizada
+    return redirect(url_for('admin.infoReservas'))

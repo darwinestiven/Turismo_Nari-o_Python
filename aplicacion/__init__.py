@@ -1,15 +1,18 @@
 from flask import Flask
 from .home import home
-from .error import error
+from .errores import errores
 from .hotel import hotel
 from .usuario import usuario
 from .pueblos import pueblos
 from .restaurante import restaurante
 from .admin import admin
+from .carrito import carrito
 from flask_sqlalchemy import SQLAlchemy
+from flask import render_template
 
 
 app = Flask (__name__)
+app.config['UPLOAD_FOLDER'] = '/aplicacion/static/img'
 
 # Configuration for the database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/seminario'
@@ -20,11 +23,93 @@ db = SQLAlchemy(app)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 app.config.from_pyfile('config/configuracion.cfg')
 app.register_blueprint(home)
-app.register_blueprint(error)
+app.register_blueprint(errores)
 app.register_blueprint(hotel)
 app.register_blueprint(usuario)
 app.register_blueprint(pueblos)
 app.register_blueprint(restaurante)
 app.register_blueprint(admin)
+app.register_blueprint(carrito)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('error.html', error_code=404), 404
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('error500.html', error_code=500), 500
 
 
