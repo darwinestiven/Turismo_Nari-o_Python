@@ -9,6 +9,14 @@ import psycopg2 #pip install psycopg2
 import psycopg2.extras
 import re 
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from flask_mail import Mail
+from flask_mail import Message
+
+
+
+
+
 #login
 DB_HOST = "localhost"
 DB_NAME = "seminario"
@@ -47,6 +55,7 @@ def login():
   
 @usuario.route('/register', methods=['GET', 'POST'])
 def register():
+    from aplicacion import app, mail
     try:
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         form = RegistrationForm()
@@ -66,6 +75,25 @@ def register():
             else:
                 cursor.execute("INSERT INTO users (fullname, username, password, email) VALUES (%s,%s,%s,%s)", (fullname, username, hashed_password, email))
                 conn.commit()
+
+                msg = Message('Gracias por tu registro!',
+                          sender=app.config['MAIL_USERNAME'],
+                          recipients=[email])
+
+                msg.html = render_template('email.html', username1=username)
+                
+                with app.open_resource('static/img/nariño.jpg') as fp:
+                    msg.attach('nariño.jpg', 'image/jpg', fp.read(), headers=[('Content-ID', '<narino>')])
+
+                with app.open_resource('static/img/captura.png') as fp:
+                    msg.attach('captura.png', 'image/png', fp.read(), headers=[('Content-ID', '<captura>')])
+
+                try:
+                    mail.send(msg)
+                except Exception as e:
+                    flash(f'Error al enviar el correo electrónico: {e}')
+
+
                 flash('Se ha registrado exitosamente!')
                 return redirect(url_for('usuario.login'))
 

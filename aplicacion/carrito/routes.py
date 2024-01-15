@@ -24,6 +24,8 @@ from wtforms.validators import DataRequired, ValidationError
 from wtforms import StringField, SubmitField, IntegerField, DateField
 from flask import g
 
+from flask import jsonify
+
 #login
 DB_HOST = "localhost"
 DB_NAME = "seminario"
@@ -34,6 +36,9 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
 
 # Variable global para el contador
 contador_reservas = 0
+
+
+
 
 #registrar Fechas a carrito
 @carrito.route('/registerCarrito/<int:id>', methods=['GET', 'POST'])
@@ -80,7 +85,7 @@ def registerCarrito(id):
 
 
 #añadir a carrito
-@carrito.route('/reservas/', methods=['GET'])
+@carrito.route('/reservas/', methods=['GET','POST'])
 def reservas():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
@@ -149,5 +154,33 @@ def hacer_reserva():
     conn.commit()
     #print(result)
 
+    
 
     return redirect(url_for('carrito.reservas'))
+
+
+#añadir a carrito
+@carrito.route('/reservasjs/', methods=['GET','POST'])
+def reservasjs():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    # Obtén los datos necesarios de la base de datos
+    cursor.execute("""
+        SELECT carrito.id, hoteles.nombreh, carrito.cantidad_hab, carrito.fecha_inicio, carrito.fecha_salida, hoteles.precioh,
+               (carrito.fecha_salida - carrito.fecha_inicio) AS dias_totales,
+               (carrito.cantidad_hab * hoteles.precioh * (carrito.fecha_salida - carrito.fecha_inicio)) AS precio_total
+        FROM carrito
+        INNER JOIN hoteles ON hoteles.id = carrito.id_hotel
+    """)
+    reservas_data = cursor.fetchall()
+
+    cursor.execute("SELECT COUNT(*) FROM carrito")
+    contador_reservas = cursor.fetchone()[0]
+
+    # Establecer el valor del contador_reservas en el contexto g
+    g.contador_reservas = contador_reservas
+    return jsonify({'reservasjs': reservas_data})
+
+    
+
+

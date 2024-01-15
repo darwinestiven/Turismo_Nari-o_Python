@@ -14,6 +14,9 @@ DB_NAME = "seminario"
 DB_USER = "postgres"
 DB_PASS = "12345"
 
+
+from flask import jsonify
+
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
 @admin.route('/loginadmin/', methods=['GET', 'POST'])
@@ -92,3 +95,16 @@ def eliminar_readmin(id):
 
     # Después de eliminar, redirige a la página de reservas actualizada
     return redirect(url_for('admin.infoReservas'))
+
+#VISTAS DE RESERVA
+@admin.route('/infoReservajs', methods=['GET'])
+def infoReservasjs():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    # Obtén los datos necesarios de la base de datos
+    cursor.execute('SELECT id_res, nom_hotel, cant_hab, fecha_ini, fecha_sal, precio_hot, dias_tot, precio_tot FROM reservas')
+    reservas_data = cursor.fetchall()
+
+    return jsonify({'infoReservasjs': reservas_data})
+
+   

@@ -10,9 +10,22 @@ from .carrito import carrito
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 
+from flask_mail import Mail
+
 
 app = Flask (__name__)
 app.config['UPLOAD_FOLDER'] = '/aplicacion/static/img'
+
+# Configuración de Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'darwinestivendiaz@gmail.com'
+app.config['MAIL_PASSWORD'] = 'pvls mmoi krdk evph'
+# Otras configuraciones...
+
+mail = Mail(app)
 
 # Configuration for the database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/seminario'

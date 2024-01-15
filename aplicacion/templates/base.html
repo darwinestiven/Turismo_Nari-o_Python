@@ -122,7 +122,9 @@
               <a class="nav-link fw-semibold fs-5 nav-text" href="{{url_for('restaurante.restaurantes')}}">Registro Restaurantes <i class="bi bi-star fs-3 ms-2"></i></a>
           </li>
       </ul>
-  </div>  
+  </div>
+  
+  <div id="google_translate_element" class="google"></div>
   {% endif %}
 
     
@@ -156,3 +158,14 @@
 
   </body>
 </html>
+
+<!--Start Traslate-->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  }
+  </script>
+  
+  <script type="text/javascript" async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!--End Traslate-->

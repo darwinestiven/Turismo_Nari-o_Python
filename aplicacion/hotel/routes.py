@@ -22,6 +22,9 @@ from flask_paginate import Pagination, get_page_args
 
 from flask import g
 
+from flask import jsonify
+
+
 
 #login
 DB_HOST = "localhost"
@@ -81,37 +84,29 @@ def registerHotel():
 # Mostrar hoteles
 @hotel.route('/hoteles', methods=['GET', 'POST'])
 def hoteles():
-    global contador_reservas  # Declarar la variable como global
+    global contador_reservas
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-    # Obtén el número de página actual
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page')
-    
-    # Obtén todos los hoteles y el total de hoteles
+    # Default value for per_page if not provided
+    default_per_page = 4
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page', per_page=default_per_page)
 
-    cursor.execute('SELECT * FROM hoteles')
+    cursor.execute('SELECT COUNT(*) FROM hoteles')
+    total_hoteles = cursor.fetchone()[0]
+
+    cursor.execute('SELECT * FROM hoteles LIMIT %s OFFSET %s', (per_page, offset))
     hoteles = cursor.fetchall()
-    total_hoteles = len(hoteles)
 
-    #pagination_hoteles = get_hoteles(offset=offset, per_page=4)
-    # Calcula el número total de páginas
-    pagination = Pagination(page=page, per_page=4, total=total_hoteles,
-                            css_framework='bootstrap4',record_name='hoteles')
-    
+    pagination = Pagination(page=page, per_page=per_page, total=total_hoteles, css_framework='bootstrap4')
 
-    #Limita los hoteles según la paginación
-    start = (page - 1) * per_page
-    end = start + per_page
-    hoteles_paginados = hoteles[start:end]
-    
     cursor.execute("SELECT COUNT(*) FROM carrito")
     contador_reservas = cursor.fetchone()[0]
-    # Establecer el valor del contador_reservas en el contexto g
     g.contador_reservas = contador_reservas
 
-    # Mostrar la página de hoteles con la lista de hoteles paginados
-    return render_template('hoteles.html', hoteles=hoteles_paginados, pagination=pagination, contador_reservas=contador_reservas)
+    # Include per_page in the context
+    return render_template('hoteles.html', hoteles=hoteles, pagination=pagination, contador_reservas=contador_reservas, page=page, total_hoteles=total_hoteles, per_page=per_page)
+
+
 
 
 
@@ -166,9 +161,8 @@ def editarHotel(id):
     return render_template('editarHotel.html', form=form)
 
 
-
 # Nueva ruta para eliminar un hotel
-@hotel.route('/eliminarHotel/<int:id>', methods=['GET', 'POST'])
+@hotel.route('/eliminarHotel/<int:id>', methods=['GET', 'POST','DELETE'])
 def eliminarHotel(id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
@@ -186,6 +180,64 @@ def eliminarHotel(id):
         conn.commit()
         flash('Hotel eliminado exitosamente!')
         return redirect(url_for('hotel.hoteles'))
+    
+    elif request.method == 'DELETE':
+        cursor.execute('DELETE FROM hoteles WHERE id = %s', (id,))
+        conn.commit()
+
+        return jsonify({'message': 'Hotel eliminado exitosamente'}), 200
 
     return render_template('eliminarHotel.html', hotel=hotel_data)
 
+@hotel.route('/eliminarHoteljs/<int:id>', methods=['DELETE'])
+def eliminarHoteljs(id):
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    # Comprobar si el hotel existe
+    cursor.execute('SELECT * FROM hoteles WHERE id = %s', (id,))
+    hotel_data = cursor.fetchone()
+
+    if not hotel_data:
+        return jsonify({'error': 'Hotel no encontrado'}), 404
+
+    # Eliminar el hotel de la base de datos
+    cursor.execute('DELETE FROM hoteles WHERE id = %s', (id,))
+    conn.commit()
+
+    return jsonify({'message': 'Hotel eliminado exitosamente'}), 200
+
+
+# Mostrar hotelesJSON
+@hotel.route('/hotelesjs', methods=['GET', 'POST'])
+def hoteles_js():
+    global contador_reservas  # Declarar la variable como global
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    # Obtén el número de página actual
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    
+    # Obtén todos los hoteles y el total de hoteles
+
+    cursor.execute('SELECT * FROM hoteles')
+    hoteles = cursor.fetchall()
+    total_hoteles = len(hoteles)
+
+    #pagination_hoteles = get_hoteles(offset=offset, per_page=4)
+    # Calcula el número total de páginas
+    pagination = Pagination(page=page, per_page=4, total=total_hoteles,
+                            css_framework='bootstrap4',record_name='hoteles')
+    
+
+    #Limita los hoteles según la paginación
+    start = (page - 1) * per_page
+    end = start + per_page
+    hoteles_paginados = hoteles[start:end]
+    
+    cursor.execute("SELECT COUNT(*) FROM carrito")
+    contador_reservas = cursor.fetchone()[0]
+    # Establecer el valor del contador_reservas en el contexto g
+    g.contador_reservas = contador_reservas
+
+    # Mostrar la página de hoteles con la lista de hoteles paginados
+    return jsonify({'hoteles_js': hoteles_paginados})
